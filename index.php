@@ -1,44 +1,77 @@
 <?php
 $pageTitle = "Home | A Cultural Journey";
+$showWinningTicket = true;
 include "includes/header.php";
 include "data/destinations.php";
 ?>
+<label for="claim-ticket" class="ticket-overlay">
+    <span class="ticket-trigger">
+        <img
+            src="images/ticket.jpg"
+            alt="Winning ticket for a six-day cultural journey through Syria and Việt Nam, all expenses paid"
+            class="ticket-full"
+            width="1600"
+            height="650"
+        >
+        <span class="ticket-hint">Click the ticket to begin your journey</span>
+    </span>
+</label>
+
+<div class="confetti-layer" aria-hidden="true">
+    <?php for ($i = 0; $i < 48; $i++): ?>
+        <span class="confetti-piece" style="--i: <?= $i ?>;"></span>
+    <?php endfor; ?>
+</div>
+
 <main id="main-content">
     <section class="hero">
         <div class="container hero-content">
             <p class="eyebrow">You won a six-day cultural journey</p>
-            <h1>A Cultural Journey Through Syria and Vietnam</h1>
+            <h1>A Cultural Journey Through Syria and Việt Nam</h1>
             <p>
                 Imagine receiving a winning ticket that takes you through six destinations:
-                three in Syria and three in Vietnam. At every stop, you will explore history,
+                three in Syria and three in Việt Nam. At every stop, you will explore history,
                 traditions, food, landmarks, and cultural significance.
             </p>
             <a class="button" href="#itinerary">Begin the Journey</a>
         </div>
     </section>
 
-    <section id="itinerary" class="section">
+    <section id="itinerary" class="section timeline-section">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading timeline-heading">
                 <p class="eyebrow">Your itinerary</p>
                 <h2>Six days, two countries, one cultural experience</h2>
+                <p>Follow the route from Syria's historic cities into the living heritage of central Việt Nam.</p>
             </div>
 
-            <div class="card-grid">
+            <div class="journey-timeline" aria-label="Six-day journey timeline">
                 <?php foreach ($destinations as $destination): ?>
-                    <article class="destination-card">
-                        <div class="card-image placeholder-image" role="img"
-                             aria-label="Image placeholder for <?= htmlspecialchars($destination["name"]) ?>">
-                            <span>Day <?= (int)$destination["day"] ?></span>
+                    <?php
+                    $displayName = $destination["city"] ?? $destination["name"];
+                    $roomHref = $destination["country"] === "Syria"
+                        ? "syria-room.php?artifact=" . urlencode($destination["id"]) . "#" . urlencode($destination["city_anchor"])
+                        : "vietnam-room.php?artifact=" . urlencode($destination["id"]) . "#" . urlencode($destination["city_anchor"]);
+                    ?>
+                    <article class="timeline-item">
+                        <p class="timeline-day">Day <?= (int)$destination["day"] ?></p>
+                        <div class="timeline-marker" aria-hidden="true">
+                            <span><?= (int)$destination["day"] ?></span>
                         </div>
-                        <div class="card-content">
-                            <p class="country-label"><?= htmlspecialchars($destination["country"]) ?></p>
-                            <h3><?= htmlspecialchars($destination["name"]) ?></h3>
-                            <p><?= htmlspecialchars($destination["history"]) ?></p>
-                            <a class="text-link"
-                               href="<?= $destination["country"] === "Syria" ? "syria.php" : "vietnam.php" ?>#<?= htmlspecialchars($destination["id"]) ?>">
-                                Explore this stop
-                            </a>
+                        <div class="timeline-card">
+                            <img
+                                class="timeline-card-image"
+                                src="<?= htmlspecialchars($destination["image"]) ?>"
+                                alt="<?= htmlspecialchars($displayName) ?> cultural destination photo"
+                                width="640"
+                                height="360"
+                            >
+                            <div class="timeline-card-body">
+                                <p class="country-label"><?= htmlspecialchars($destination["country"]) ?></p>
+                                <h3><?= htmlspecialchars($displayName) ?></h3>
+                                <p class="timeline-summary"><?= htmlspecialchars($destination["description"]) ?></p>
+                                <a class="text-link" href="<?= htmlspecialchars($roomHref) ?>">Explore this stop</a>
+                            </div>
                         </div>
                     </article>
                 <?php endforeach; ?>
@@ -58,19 +91,19 @@ include "data/destinations.php";
                         <tr>
                             <th>Category</th>
                             <th>Syria</th>
-                            <th>Vietnam</th>
+                            <th>Việt Nam</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th>Languages</th>
                             <td>Arabic</td>
-                            <td>Vietnamese</td>
+                            <td>Vietnamese (Tiếng Việt)</td>
                         </tr>
                         <tr>
                             <th>Featured foods</th>
                             <td>Kibbeh, shawarma, stuffed vegetables</td>
-                            <td>Pho, bánh mì, bun cha</td>
+                            <td>Phở, bánh mì, bún bò Huế, mì Quảng</td>
                         </tr>
                         <tr>
                             <th>Featured heritage</th>
@@ -80,7 +113,7 @@ include "data/destinations.php";
                         <tr>
                             <th>Journey focus</th>
                             <td>Damascus, Aleppo, Palmyra</td>
-                            <td>Hanoi, Ho Chi Minh City, Hội An</td>
+                            <td>Đà Nẵng, Hội An, Huế</td>
                         </tr>
                     </tbody>
                 </table>

@@ -21,8 +21,10 @@
 - [ ] Images or placeholders maintain their proportions.
 
 ## CSS-Only Interaction
-- [ ] Every accordion can be opened by mouse.
-- [ ] Every accordion can be opened by keyboard.
+- [ ] Home winning ticket opens with checkbox/label (no JavaScript).
+- [ ] Confetti animation plays with CSS only after claiming the ticket.
+- [ ] Room hotspots open artifact details via PHP `$_GET` (no JavaScript).
+- [ ] Artifact info accordion (`<details>` / `<summary>`) opens by mouse and keyboard.
 - [ ] No JavaScript files or script tags are present.
 
 ## Accessibility
