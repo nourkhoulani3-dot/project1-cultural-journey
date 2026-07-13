@@ -5,31 +5,30 @@
 - Hayley
 
 ## Project Description
-This project is a PHP-powered cultural heritage archive presented as a six-day journey.
-Visitors explore three destinations in Syria and three destinations in Vietnam while learning
-about history, food, traditions, landmarks, and travel tips.
+This project is a PHP-powered cultural heritage experience presented as a six-day journey.
+Visitors open a winning ticket splash (CSS-only), then explore destinations in Syria and Vietnam
+through interactive rooms, a collectible passport, and a postcard journal form.
 
 ## Required Features
-- Four linked PHP pages
+- Four+ linked PHP pages
 - Shared header, navigation, and footer using `include()`
 - Destination data stored in a PHP array
 - Dynamic content rendered with `foreach`
-- Validated `$_POST` form
-- Sanitized output using `htmlspecialchars()`
-- Cultural comparison guide
-- CSS-only accordion using native HTML `<details>` and `<summary>`
+- Validated `$_POST` form with `htmlspecialchars()` sanitization
+- Cultural comparison guide (Feature A : information design)
+- CSS-only ticket reveal + room hotspots / accordion-style popup flow (Feature B)
 - Responsive mobile, tablet, and desktop layouts
-- No JavaScript
+- **No JavaScript** : all interaction is HTML/CSS (+ PHP server-side)
 
 ## File Structure
-- `index.php`
-- `syria.php`
-- `vietnam.php`
-- `suggest.php`
-- `includes/`
-- `data/`
-- `css/`
-- `images/`
+- `index.php` : winning ticket splash + homepage itinerary
+- `syria-room.php` / `vietnam-room.php` : interactive cultural rooms
+- `passport.php` : stamp collection + comparison guide
+- `postcard.php` : validated postcard form
+- `includes/` : header, footer, nav, session helpers
+- `data/destinations.php` : destination array
+- `css/style.css`
+- `images/` : see `images/PLACEHOLDERS.md` for required image filenames
 
 ## Setup
 Upload the complete project folder to a PHP-enabled server and open `index.php`.
