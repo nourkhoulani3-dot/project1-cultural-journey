@@ -50,7 +50,7 @@ $citySections = [
         </div>
 
         <div class="room-scene">
-            <img src="images/syriabannerbackground.jpg" alt="Syria citadel overlook with national flag" class="room-background">
+            <img src="images/syriabanner.jpg" alt="Syria citadel overlook with national flag" class="room-background">
 
             <?php foreach ($roomDestinations as $index => $d): ?>
                 <a
