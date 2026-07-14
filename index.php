@@ -82,38 +82,38 @@ include "data/destinations.php";
     <section class="section comparison-section">
         <div class="container">
             <div class="section-heading">
-                <p class="eyebrow">Feature A</p>
+                <p class="eyebrow">Side by side</p>
                 <h2>Cultural Comparison Guide</h2>
             </div>
             <div class="table-wrapper">
-                <table>
+                <table class="comparison-table">
                     <thead>
                         <tr>
-                            <th>Category</th>
-                            <th>Syria</th>
-                            <th>Việt Nam</th>
+                            <th scope="col">Category</th>
+                            <th scope="col" class="col-syria">Syria</th>
+                            <th scope="col" class="col-vietnam">Việt Nam</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Languages</th>
-                            <td>Arabic</td>
-                            <td>Vietnamese (Tiếng Việt)</td>
+                            <th scope="row">Languages</th>
+                            <td class="col-syria">Arabic</td>
+                            <td class="col-vietnam">Vietnamese (Tiếng Việt)</td>
                         </tr>
                         <tr>
-                            <th>Featured foods</th>
-                            <td>Kibbeh, shawarma, stuffed vegetables</td>
-                            <td>Phở, bánh mì, bún bò Huế, mì Quảng</td>
+                            <th scope="row">Foods</th>
+                            <td class="col-syria">Shawarma, kibbeh, muhammara</td>
+                            <td class="col-vietnam">Cao Lầu, white rose dumplings, bún bò Huế</td>
                         </tr>
                         <tr>
-                            <th>Featured heritage</th>
-                            <td>Ancient cities, souqs, citadels</td>
-                            <td>Historic quarters, temples, trading ports</td>
+                            <th scope="row">Heritage</th>
+                            <td class="col-syria">Umayyad Mosque, souqs, Citadel of Aleppo</td>
+                            <td class="col-vietnam">Hội An Ancient Town, silk lanterns, Huế Imperial City</td>
                         </tr>
                         <tr>
-                            <th>Journey focus</th>
-                            <td>Damascus, Aleppo, Palmyra</td>
-                            <td>Đà Nẵng, Hội An, Huế</td>
+                            <th scope="row">Journey focus</th>
+                            <td class="col-syria">Damascus, Aleppo, Palmyra</td>
+                            <td class="col-vietnam">Đà Nẵng, Hội An, Huế</td>
                         </tr>
                     </tbody>
                 </table>

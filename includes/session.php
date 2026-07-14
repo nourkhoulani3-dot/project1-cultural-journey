@@ -9,6 +9,10 @@ if (!isset($_SESSION['visited_artifacts'])) {
     $_SESSION['visited_artifacts'] = [];
 }
 
+if (!isset($_SESSION['journal_entries'])) {
+    $_SESSION['journal_entries'] = [];
+}
+
 //Mark one destination ID as visited (adds a stamp)
 function markVisited(string $destinationId): void {
     if (!in_array($destinationId, $_SESSION['visited_artifacts'], true)) {
@@ -28,4 +32,14 @@ function visitedCount(?array $validIds = null): int {
         $visited = array_values(array_intersect($visited, $validIds));
     }
     return count($visited);
+}
+
+//Save a validated postcard/journal entry into passport memory
+function saveJournalEntry(array $entry): void {
+    $_SESSION['journal_entries'][] = $entry;
+}
+
+//Return all saved journal notes (newest first)
+function getJournalEntries(): array {
+    return array_reverse($_SESSION['journal_entries']);
 }

@@ -16,6 +16,10 @@
     --space-3: 1.5rem;
     --space-4: 2.5rem;
     --space-5: 4rem;
+    --syria-tint: #f4e4e6;
+    --syria-deep: #9c3f4f;
+    --vietnam-tint: #e6ecef;
+    --vietnam-deep: #314d58;
 }
 
 /* ------------------------------
@@ -382,40 +386,15 @@ a {
 }
 
 /* ------------------------------
-   Cards and destination details
+   Shared cards / messages
 ------------------------------ */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-3);
-}
-
-.destination-card,
-.destination-detail,
-.suggestion-form,
 .message {
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--surface);
     box-shadow: var(--shadow);
-}
-
-.card-content,
-.detail-content,
-.suggestion-form,
-.message {
     padding: var(--space-3);
-}
-
-.placeholder-image {
-    display: grid;
-    min-height: 210px;
-    place-items: center;
-    background: linear-gradient(135deg, #e2b8aa, #aabec4);
-    color: #3e2929;
-    font-size: 1.4rem;
-    font-weight: 800;
 }
 
 .country-label {
@@ -424,21 +403,7 @@ a {
     font-weight: 800;
 }
 
-.destination-list {
-    display: grid;
-    gap: var(--space-4);
-}
-
-.destination-detail {
-    display: grid;
-    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.6fr);
-}
-
-.detail-image {
-    min-height: 100%;
-}
-
-/* CSS-only accordion through native HTML details */
+/* Native accordion base (artifact tiles refine this further) */
 details {
     padding: var(--space-2) 0;
     border-top: 1px solid var(--border);
@@ -481,6 +446,91 @@ td {
 
 thead {
     background: #ead9cf;
+}
+
+.comparison-table {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.comparison-table thead th {
+    border: 0;
+    border-bottom: 2px solid var(--border);
+    padding: 1.05rem 1.15rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+}
+
+.comparison-table thead th:first-child {
+    background: #ead9cf;
+    color: var(--text);
+}
+
+.comparison-table thead .col-syria {
+    background: var(--syria-deep);
+    color: #fffaf4;
+}
+
+.comparison-table thead .col-vietnam {
+    background: var(--vietnam-deep);
+    color: #fffaf4;
+}
+
+.comparison-table tbody th,
+.comparison-table tbody td {
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.comparison-table tbody th {
+    width: 22%;
+    background: #f7efe8;
+    border-right: 1px solid var(--border);
+    font-weight: 800;
+    color: var(--text);
+}
+
+.comparison-table tbody .col-syria {
+    background: var(--syria-tint);
+    color: var(--accent-dark);
+}
+
+.comparison-table tbody .col-vietnam {
+    background: var(--vietnam-tint);
+    color: var(--vietnam-deep);
+}
+
+.comparison-table tbody tr:last-child th,
+.comparison-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.comparison-table tbody tr:hover th {
+    background: #efe0d4;
+}
+
+.comparison-table tbody tr:hover .col-syria {
+    background: #ebd0d4;
+    box-shadow: inset 0 0 0 2px rgba(156, 63, 79, 0.28);
+}
+
+.comparison-table tbody tr:hover .col-vietnam {
+    background: #d5e0e5;
+    box-shadow: inset 0 0 0 2px rgba(49, 77, 88, 0.28);
+}
+
+.comparison-table tbody tr:focus-within th,
+.comparison-table tbody tr:focus-within .col-syria,
+.comparison-table tbody tr:focus-within .col-vietnam {
+    outline: none;
+}
+
+.comparison-table tbody tr:focus-within {
+    outline: 3px solid rgba(156, 63, 79, 0.35);
+    outline-offset: -3px;
 }
 
 /* ------------------------------
@@ -537,18 +587,6 @@ textarea:focus {
         flex-direction: column;
         padding: 1rem 0;
     }
-
-    .card-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .destination-detail {
-        grid-template-columns: 1fr;
-    }
-
-    .detail-image {
-        min-height: 260px;
-    }
 }
 
 /* ------------------------------
@@ -558,10 +596,6 @@ textarea:focus {
     .site-nav ul {
         flex-direction: column;
         gap: 0.5rem;
-    }
-
-    .card-grid {
-        grid-template-columns: 1fr;
     }
 
     .section {
@@ -747,103 +781,6 @@ textarea:focus {
     }
 }
 
-/* Destination photos (homepage cards + room popups) */
-.destination-photo {
-    width: 100%;
-    height: 210px;
-    object-fit: cover;
-    background:
-        linear-gradient(135deg, #e2b8aa, #aabec4);
-}
-
-.artifact-popup .destination-photo {
-    flex: 0 1 280px;
-    min-width: 220px;
-    height: 260px;
-    border-radius: calc(var(--radius) - 0.15rem);
-}
-
-.globe-wrap {
-    display: flex;
-    justify-content: center;
-    margin-top: var(--space-4);
-}
-
-.globe-svg {
-    width: min(320px, 80%);
-    height: auto;
-}
-
-.globe-grid-line {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.55);
-    stroke-width: 1;
-}
-
-.flight-path {
-    fill: none;
-    stroke: var(--accent-dark);
-    stroke-width: 2;
-    stroke-dasharray: 6 6;
-    animation: dash-flow 3s linear infinite;
-}
-
-@keyframes dash-flow {
-    to { stroke-dashoffset: -24; }
-}
-
-.flight-dot {
-    fill: var(--accent-dark);
-}
-
-.flight-label {
-    font-size: 10px;
-    fill: var(--muted);
-}
-
-/* Plane travels along the same curve as the flight path (modern browsers) */
-.plane-icon {
-    offset-path: path('M 55 195 Q 150 55 245 145');
-    offset-rotate: 0deg;
-    animation: fly-path 6s ease-in-out infinite alternate;
-}
-
-@keyframes fly-path {
-    from { offset-distance: 0%; }
-    to { offset-distance: 100%; }
-}
-
-/* ------------------------------
-   Room preview cards (homepage)
------------------------------- */
-.room-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-3);
-}
-
-.room-preview-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    background: var(--surface);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.room-preview-image {
-    min-height: 220px;
-}
-
-.passport-teaser-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-}
-
 /* ------------------------------
    Interactive room pages
 ------------------------------ */
@@ -945,108 +882,6 @@ textarea:focus {
 @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(156, 63, 79, 0.5); }
     50% { box-shadow: 0 0 0 10px rgba(156, 63, 79, 0); }
-}
-
-.artifact-popup {
-    margin-top: var(--space-3);
-    display: flex;
-    gap: var(--space-3);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: var(--space-3);
-    box-shadow: var(--shadow);
-    flex-wrap: wrap;
-}
-
-.artifact-popup-content {
-    flex: 1;
-    min-width: 220px;
-}
-
-.artifact-facts {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-2);
-    display: grid;
-    gap: 0.5rem;
-}
-
-/* CSS-only accordion (Feature B) */
-.info-accordion {
-    display: grid;
-    gap: 0.65rem;
-    margin: var(--space-2) 0 var(--space-3);
-}
-
-.info-panel {
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    background: var(--background);
-    padding: 0;
-    overflow: hidden;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.info-panel[open] {
-    border-color: #d8b4a8;
-    box-shadow: 0 6px 18px rgba(50, 35, 25, 0.06);
-}
-
-.info-panel summary {
-    list-style: none;
-    cursor: pointer;
-    font-weight: 800;
-    padding: 0.85rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    color: var(--text);
-}
-
-.info-panel summary::-webkit-details-marker {
-    display: none;
-}
-
-.info-panel summary::after {
-    content: "+";
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 999px;
-    display: grid;
-    place-items: center;
-    background: rgba(156, 63, 79, 0.12);
-    color: var(--accent-dark);
-    font-size: 1.05rem;
-    line-height: 1;
-    flex-shrink: 0;
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.info-panel[open] summary::after {
-    content: "−";
-    background: var(--accent);
-    color: #fff;
-}
-
-.info-panel summary:hover,
-.info-panel summary:focus-visible {
-    color: var(--accent-dark);
-}
-
-.info-panel summary:focus-visible {
-    outline: 3px solid rgba(156, 63, 79, 0.35);
-    outline-offset: 2px;
-}
-
-.info-panel-body {
-    padding: 0 1rem 1rem;
-    color: var(--muted);
-}
-
-.info-panel-body p {
-    margin: 0;
 }
 
 .archive-heading {
@@ -1188,29 +1023,6 @@ body:has(#city-palmyra:target) .syria-archive-prompt {
     color: var(--accent);
 }
 
-.highlight-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.9rem 1.25rem;
-    margin-top: 0.35rem;
-}
-
-.highlight-block h4 {
-    margin: 0 0 0.35rem;
-    font-size: 0.92rem;
-    color: var(--text);
-}
-
-.syria-profile-grid {
-    grid-template-columns: 1fr;
-}
-
-@media (max-width: 700px) {
-    .highlight-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 .artifact-tile-meta {
     display: grid;
     gap: 0.2rem;
@@ -1260,14 +1072,6 @@ body:has(#city-palmyra:target) .syria-archive-prompt {
     margin-top: var(--space-3);
 }
 
-.artifact-archive-list .artifact-popup {
-    margin-top: 0;
-}
-
-.artifact-archive-list .artifact-popup-content h2 {
-    font-size: 1.35rem;
-}
-
 @media (max-width: 900px) {
     .artifact-tile-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1285,7 +1089,7 @@ body:has(#city-palmyra:target) .syria-archive-prompt {
 }
 
 /* ------------------------------
-   Passport page (Feature A)
+   Passport page
 ------------------------------ */
 .passport-page {
     display: grid;
@@ -1352,29 +1156,367 @@ body:has(#city-palmyra:target) .syria-archive-prompt {
     margin: 0;
 }
 
-/* ------------------------------
-   Postcard form
------------------------------- */
-.postcard {
-    position: relative;
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
+.passport-notes {
+    margin: var(--space-5) 0 var(--space-4);
+    scroll-margin-top: 5.5rem;
+}
+
+.journal-empty {
     padding: var(--space-3);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    background: #f7efe8;
+    color: var(--muted);
+}
+
+.journal-empty p {
+    margin: 0 0 0.5rem;
+}
+
+.journal-memory-list {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.journal-memory-card {
+    display: grid;
+    grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-left: 0.45rem solid var(--accent);
+    border-radius: var(--radius);
     background: var(--surface);
     box-shadow: var(--shadow);
 }
 
-.postcard-stamp {
-    position: absolute;
-    top: var(--space-2);
-    right: var(--space-2);
-    width: 3rem;
-    height: 3.5rem;
-    border: 2px dashed var(--accent);
+.journal-memory-photo {
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.journal-memory-content {
+    padding: var(--space-3);
+}
+
+.journal-memory-header {
     display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.65rem;
+}
+
+.journal-memory-meta {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    transform: rotate(6deg);
-    background: var(--background);
+    gap: 0.55rem;
+}
+
+.journal-memory-time {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+}
+
+.journal-memory-from {
+    margin: 0 0 0.65rem;
+    color: var(--muted);
+}
+
+.journal-memory-body {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.55;
+}
+
+/* ------------------------------
+   Postcard form
+------------------------------ */
+.postcard-section {
+    background:
+        radial-gradient(circle at top left, rgba(156, 63, 79, 0.08), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(49, 77, 88, 0.10), transparent 45%),
+        var(--background);
+}
+
+.postcard-container {
+    width: min(980px, 92%);
+}
+
+.aesthetic-postcard {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: #fffdf9;
+    box-shadow:
+        0 18px 40px rgba(50, 35, 25, 0.14),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.postcard-photo-pane {
+    position: relative;
+    min-height: 320px;
+    background: #ead9cf;
+}
+
+.postcard-preview {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.postcard-preview img,
+.postcard-photo-pane > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.postcard-preview-default {
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    background:
+        linear-gradient(145deg, #f7efe8, #efe2d8);
+    opacity: 1;
+}
+
+.aesthetic-postcard-compose:has(input[name="favorite_stop"]:checked) .postcard-preview-default {
+    opacity: 0;
+}
+
+.aesthetic-postcard-compose:has(input[value="damascus"]:checked) .postcard-preview-damascus,
+.aesthetic-postcard-compose:has(input[value="aleppo"]:checked) .postcard-preview-aleppo,
+.aesthetic-postcard-compose:has(input[value="palmyra"]:checked) .postcard-preview-palmyra,
+.aesthetic-postcard-compose:has(input[value="caurong"]:checked) .postcard-preview-caurong,
+.aesthetic-postcard-compose:has(input[value="longden"]:checked) .postcard-preview-longden,
+.aesthetic-postcard-compose:has(input[value="kinhthanh"]:checked) .postcard-preview-kinhthanh {
+    opacity: 1;
+}
+
+.postcard-city-tag,
+.postcard-country-ribbon {
+    position: absolute;
+    z-index: 2;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.postcard-city-tag {
+    left: 1rem;
+    bottom: 1rem;
+    background: rgba(255, 250, 244, 0.92);
+    color: var(--accent-dark);
+}
+
+.postcard-country-ribbon {
+    top: 1rem;
+    left: 1rem;
+    background: rgba(43, 41, 39, 0.72);
+    color: #fffaf4;
+}
+
+.postcard-stamp-seal,
+.postcard-postmark {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.postcard-stamp-seal {
+    width: 3.4rem;
+    height: 3.9rem;
+    border: 2px dashed var(--accent);
+    display: grid;
+    place-items: center;
+    font-size: 1.45rem;
+    transform: rotate(8deg);
+    background: rgba(255, 250, 244, 0.92);
+    color: var(--accent-dark);
+}
+
+.postcard-message-pane {
+    position: relative;
+    padding: 1.5rem 1.5rem 1.65rem;
+    background:
+        repeating-linear-gradient(
+            transparent,
+            transparent 1.65rem,
+            rgba(231, 216, 204, 0.55) 1.65rem,
+            rgba(231, 216, 204, 0.55) calc(1.65rem + 1px)
+        ),
+        #fffdf9;
+}
+
+.postcard-compose-label,
+.postcard-greeting {
+    margin: 0 0 1rem;
+    font-weight: 800;
+    color: var(--accent-dark);
+}
+
+.stop-picker {
+    border: 0;
+    margin: 0 0 1.15rem;
+    padding: 0;
+}
+
+.stop-picker legend {
+    font-weight: 800;
+    margin-bottom: 0.55rem;
+}
+
+.stop-group-label {
+    margin: 0.75rem 0 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.stop-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.stop-option {
+    cursor: pointer;
+}
+
+.stop-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.stop-option span {
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.stop-option-syria input:focus-visible + span,
+.stop-option-vietnam input:focus-visible + span {
+    outline: 3px solid rgba(156, 63, 79, 0.35);
+    outline-offset: 2px;
+}
+
+.stop-option-syria input:checked + span {
+    background: var(--syria-tint);
+    border-color: var(--syria-deep);
+    color: var(--accent-dark);
+}
+
+.stop-option-vietnam input:checked + span {
+    background: var(--vietnam-tint);
+    border-color: var(--vietnam-deep);
+    color: var(--vietnam-deep);
+}
+
+.aesthetic-postcard-compose textarea {
+    min-height: 7.5rem;
+    background: transparent;
+    border-style: dashed;
+}
+
+.aesthetic-postcard-compose .button {
+    margin-top: 0.35rem;
+}
+
+.aesthetic-postcard-sent .postcard-photo-pane {
+    min-height: 360px;
+}
+
+.postcard-postmark {
+    display: grid;
+    gap: 0.15rem;
+    min-width: 5.5rem;
+    padding: 0.55rem 0.65rem;
+    border: 2px solid rgba(156, 63, 79, 0.55);
+    border-radius: 50%;
+    text-align: center;
+    transform: rotate(12deg);
+    background: rgba(255, 250, 244, 0.88);
+    color: var(--accent-dark);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+}
+
+.postcard-postmark strong {
+    font-size: 0.78rem;
+}
+
+.postcard-message-text {
+    margin: 0 0 1.25rem;
+    line-height: 1.7;
+    color: var(--text);
+}
+
+.postcard-signoff {
+    margin: 0 0 0.35rem;
+    color: var(--muted);
+}
+
+.postcard-date {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.postcard-result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: var(--space-3);
+}
+
+@media (max-width: 800px) {
+    .aesthetic-postcard {
+        grid-template-columns: 1fr;
+    }
+
+    .postcard-photo-pane,
+    .aesthetic-postcard-sent .postcard-photo-pane {
+        min-height: 240px;
+    }
+
+    .journal-memory-card {
+        grid-template-columns: 1fr;
+    }
+
+    .journal-memory-photo {
+        min-height: 160px;
+        max-height: 200px;
+    }
 }
