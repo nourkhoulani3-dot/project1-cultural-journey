@@ -81,16 +81,3 @@ $destinations = [
 ];
 
 require_once __DIR__ . "/cultural_artifacts.php";
-
-if (!function_exists("destinationContent")) {
-    function destinationContent(array $destination): array
-    {
-        return [
-            "title" => $destination["name"],
-            "city" => $destination["city"] ?? $destination["country"],
-            "description" => $destination["description"] ?? "",
-            "did_you_know" => $destination["did_you_know"] ?? "",
-            "why_it_matters" => $destination["why_it_matters"] ?? ""
-        ];
-    }
-}

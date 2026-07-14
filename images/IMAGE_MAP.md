@@ -1,4 +1,17 @@
-# Image map
+# Image Map
+
+Reference for all image assets used by the site.
+
+## Journey / room assets
+| Use | File |
+|-----|------|
+| Winning ticket | `images/ticket.jpg` |
+| Việt Nam room background | `images/banahill.jpeg` |
+| Syria room background | `images/syriabannerbackground.jpg` |
+| VN hotspots | `images/caurong.png`, `images/longden.png`, `images/kinhthanh.png` |
+| City destination photos | `images/damascus.jpg`, `images/aleppo.jpg`, `images/palmyra.jpeg`, `images/danang.jpeg`, `images/hoian.jpg`, `images/hue.jpeg` |
+| Passport stamp symbols | `images/damascussymbol.jpeg`, `images/alepposymbol.jpeg`, `images/palmyrasymbol.jpg`, `images/danangsymbol.jpeg`, `images/hoiansymbol.png`, `images/huesymbol.jpeg` |
+| QA screenshots | `images/testedviewports/` |
 
 ## Việt Nam artifacts
 | Artifact | Image file |
@@ -42,12 +55,3 @@
 | Palmyra | Queen Zenobia | `images/QueenZenobia.jpeg` |
 | Palmyra | Oasis Trade City | `images/OasisTradeCity.jpeg` |
 | Palmyra | Local Crafts | `images/Palmyralocalcrafts.jpg` |
-
-## Room / journey assets
-| Use | File |
-|-----|------|
-| Ticket | `images/ticket.jpg` |
-| Việt Nam room background | `images/banahill.jpeg` |
-| Syria room background | `images/rooms/syria-room.jpg` (still optional) |
-| Hotspots VN | `caurong.png`, `longden.png`, `kinhthanh.png` |
-| Homepage cities | `damascus.jpg`, `aleppo.jpg`, `palmyra.jpeg`, `danang.jpeg`, `hoian.jpg`, `hue.jpeg` |
